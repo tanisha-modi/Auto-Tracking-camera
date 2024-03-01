@@ -56,13 +56,17 @@ while True:
 
         
         # Calculate the adjusted center of the bounding box in case the bounding box going beyond the edge of frame
-        if x < 0:
+        if x < 0 and x + w > frame_width:
+            center_bbox = (frame_width // 2, center_bbox[1])
+        elif x < 0:
             center_bbox = ((x + w) // 2, center_bbox[1])  
             print("x < 0")
         elif x + w > frame_width:
             center_bbox = (x + ((frame_width - x)// 2), center_bbox[1])
             print("x + w > 0")
-        if y < 0:
+        if y < 0 and y + h > frame_height:
+            center_bbox = (center_bbox[0], frame_height//2)
+        elif y < 0:
             center_bbox = (center_bbox[0], (y + h)// 2)
             print("y < 0")
         elif y + h > frame_height:
