@@ -29,6 +29,10 @@ while True:
 
 
 
+    if lmlist :
+        angle1, img = detector.findAngle(lmlist[11][0:2], lmlist[13][0:2], lmlist[15][0:2], img)
+
+
     # to terminate the loop
     i = i + 1 
     if i == 10000:
@@ -45,6 +49,8 @@ while True:
         center_bbox = (x + w // 2, y + h // 2)  # Center of the bounding box
         # center_bbox = (x, y)  
         
+
+
 
 
         # frame parameters

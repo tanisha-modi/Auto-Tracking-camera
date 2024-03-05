@@ -16,26 +16,26 @@ cap = cv2.VideoCapture(0)
 
 
 
-def calculate_waist_angle_z(lmlist):
-    # Assuming the indices of the relevant landmarks representing the waist or hip points
-    # Adjust these indices based on your specific pose detection model
-    left_hip_index = 11
-    right_hip_index = 12
+# def calculate_waist_angle_z(lmlist):
+#     # Assuming the indices of the relevant landmarks representing the waist or hip points
+#     # Adjust these indices based on your specific pose detection model
+#     left_hip_index = 11
+#     right_hip_index = 12
 
-    # Extracting the 3D coordinates of the left and right hip points
-    left_hip = lmlist[left_hip_index]
-    right_hip = lmlist[right_hip_index]
+#     # Extracting the 3D coordinates of the left and right hip points
+#     left_hip = lmlist[left_hip_index]
+#     right_hip = lmlist[right_hip_index]
 
-    if left_hip and right_hip:
-        # Calculate the vector components
-        vector_z = right_hip[2] - left_hip[2]
-        vector_hip = math.sqrt((right_hip[0] - left_hip[0])**2 + (right_hip[1] - left_hip[1])**2)
+#     if left_hip and right_hip:
+#         # Calculate the vector components
+#         vector_z = right_hip[2] - left_hip[2]
+#         vector_hip = math.sqrt((right_hip[0] - left_hip[0])**2 + (right_hip[1] - left_hip[1])**2)
 
-        # Calculate the angle with the Z-axis
-        waist_angle_z = math.degrees(math.atan2(vector_hip, vector_z))
-        return waist_angle_z
-    else:
-        return None
+#         # Calculate the angle with the Z-axis
+#         waist_angle_z = math.degrees(math.atan2(vector_hip, vector_z))
+#         return waist_angle_z
+#     else:
+#         return None
 
 # Example usage:
 # lmlist = [[418, 291, -877], [439, 259, -812], [451, 262, -812], [464, 265, -812], [397, 254, -823], [380, 254, -823], [366, 253, -823], [478, 287, -448], [338, 273, -487], [435, 337, -741], [382, 329, -754], [561, 470, -238], [210, 467, -330], [650, 648, -406], [132, 674, -397], [588, 763, -967], [206, 816, -905], [594, 807, -1106], [207, 877, -1045], [560, 778, -1128], [244, 856, -1072], [551, 728, -1004], [248, 832, -934], [486, 891, -24], [248, 885, 29], [473, 1246, -167], [266, 1230, -264], [478, 1565, 203], [269, 1551, -26], [481, 1621, 208], [264, 1608, -25], [436, 1664, -316], [307, 1646, -581]]
@@ -72,13 +72,14 @@ while True:
         # print(lmlist[26][2])
         # print("ok")
         
-        angle1, img = detector.findAngle(lmlist[12][1:3], lmlist[24][1:3], lmlist[26][1:3], img)
-        # angle2, img = detector.findAngle(lmlist[11][0:2], lmlist[23][0:2], lmlist[25][0:2], img)
-        waist_angle_z = calculate_waist_angle_z(lmlist)
-        if waist_angle_z is not None:
-             print("Angle of waist in Z-axis:", waist_angle_z)
-        else:
-             print("Waist landmarks not detected.")
+        angle1, img = detector.findAngle(lmlist[11][1:3], lmlist[13][0:2], lmlist[15][0:2], img)
+        # angle3, img = detector.findAngle(lmlist[12][1:3], lmlist[24][1:3], lmlist[26][1:3], img)
+        # angle2, img = detector.findAngle(lmlist[21][0:2], lmlist[15][0:2], lmlist[17][0:2], img)
+        # waist_angle_z = calculate_waist_angle_z(lmlist)
+        # if waist_angle_z is not None:
+        #      print("Angle of waist in Z-axis:", waist_angle_z)
+        # else:
+        #      print("Waist landmarks not detected.")
 
 
     # to terminate the loop
